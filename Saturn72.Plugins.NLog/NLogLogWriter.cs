@@ -20,7 +20,7 @@ namespace Saturn72.Plugins.NLog
 
         public virtual void Write(Log log)
         {
-            var message = string.Format("{0} >> On node: {1} >> Full Details: {2}", log.ShortMessage, log.FullMessage);
+            var message = string.Format("{0} >> On node: {1} >> Full Details: {2}", log.LogLevel, log.ShortMessage, log.FullMessage);
 
             Logger.Log(ToNLogLogLevel(log.LogLevel), message);
         }
