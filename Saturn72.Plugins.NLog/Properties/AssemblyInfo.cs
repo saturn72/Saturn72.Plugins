@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Automation.Plugins.Logging")]
+[assembly: AssemblyTitle("Saturn72.Plugins.NLog")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("Automation.Plugins.Logging")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2015")]
+[assembly: AssemblyCompany("Saturn Technologies")]
+[assembly: AssemblyProduct("Saturn72.Plugins.NLog")]
+[assembly: AssemblyCopyright("Copyright © Saturn Technologies 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

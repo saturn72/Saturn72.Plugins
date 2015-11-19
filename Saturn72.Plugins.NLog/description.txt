@@ -1,0 +1,4 @@
+﻿FriendlyName: NLog Logger
+FileName: Saturn72.Plugins.NLog.dll
+SupportedVersions: 1.00
+SystemName: Saturn72.Plugins.NLog

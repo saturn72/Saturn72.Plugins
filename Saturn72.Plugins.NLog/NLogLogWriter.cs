@@ -9,7 +9,7 @@ using Saturn72.Extensions;
 using LogLevel = NLog.LogLevel;
 using NLogLogger = NLog.Logger;
 
-namespace Automation.Plugins.Logging
+namespace Saturn72.Plugins.NLog
 {
     public class NLogLogWriter : ILogWriter
     {

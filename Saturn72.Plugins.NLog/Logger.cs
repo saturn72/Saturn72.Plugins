@@ -4,7 +4,7 @@ using Saturn72.Core;
 using Saturn72.Core.Domain.Logging;
 using Saturn72.Core.Domain.Users;
 
-namespace Automation.Plugins.Logging
+namespace Saturn72.Plugins.NLog
 {
     public class Logger : ILogger
     {

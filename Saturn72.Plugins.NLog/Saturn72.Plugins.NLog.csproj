@@ -7,8 +7,8 @@
     <ProjectGuid>{4118AC85-2F60-4B5C-AADB-4ADA5F5C83AF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Automation.Plugins.Logging</RootNamespace>
-    <AssemblyName>Automation.Plugins.Logging</AssemblyName>
+    <RootNamespace>Saturn72.Plugins.NLog</RootNamespace>
+    <AssemblyName>Saturn72.Plugins.NLog</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

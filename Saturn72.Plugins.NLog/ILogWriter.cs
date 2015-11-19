@@ -1,6 +1,6 @@
 ﻿using Saturn72.Core.Domain.Logging;
 
-namespace Automation.Plugins.Logging
+namespace Saturn72.Plugins.NLog
 {
     public interface ILogWriter
     {

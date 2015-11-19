@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saturn72.Plugins.Logging.FileSystem", "Saturn72.Plugins.Logging.FileSystem\Saturn72.Plugins.Logging.FileSystem.csproj", "{4118AC85-2F60-4B5C-AADB-4ADA5F5C83AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Saturn72.Plugins.NLog", "Saturn72.Plugins.NLog\Saturn72.Plugins.NLog.csproj", "{4118AC85-2F60-4B5C-AADB-4ADA5F5C83AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
