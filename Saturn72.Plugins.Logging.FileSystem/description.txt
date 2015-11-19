@@ -1,0 +1,4 @@
+﻿FriendlyName: File System Logger
+FileName: Saturn72.Plugins.Logging.FileSystem.dll
+SupportedVersions: 1.00
+SystemName: Saturn72.Plugins.Logging.FileSystem
