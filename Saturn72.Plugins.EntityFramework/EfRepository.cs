@@ -3,24 +3,16 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
-using Saturn72.Core.Domain.Logging;
 using Saturn72.Extensions;
 
 namespace Saturn72.Core.Data
 {
     public class EfRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
-        #region Fields
-
-        private readonly IDbContext _context;
-        private IDbSet<TEntity> _entities;
-
-        #endregion
-
         #region Ctor
 
         /// <summary>
-        /// Ctor
+        ///     Ctor
         /// </summary>
         /// <param name="context">Object context</param>
         public EfRepository(IDbContext context)
@@ -30,10 +22,17 @@ namespace Saturn72.Core.Data
 
         #endregion
 
+        #region Fields
+
+        private readonly IDbContext _context;
+        private IDbSet<TEntity> _entities;
+
+        #endregion
+
         #region Methods
 
         /// <summary>
-        /// Get entity by identifier
+        ///     Get entity by identifier
         /// </summary>
         /// <param name="id">Identifier</param>
         /// <returns>Entity</returns>
@@ -45,36 +44,24 @@ namespace Saturn72.Core.Data
         }
 
         /// <summary>
-        /// Insert entity
+        ///     Insert entity
         /// </summary>
         /// <param name="entity">Entity</param>
         public virtual void Insert(TEntity entity)
         {
-            try
-            {
-                if (entity == null)
-                    throw new ArgumentNullException("entity");
+            Guard.NotNull(entity,nameof(entity));
 
+            var insertEntityAction = new Action(() =>
+            {
                 Entities.Add(entity);
                 Entities.Add(HandleCreateableAndUpdateableEntity(entity));
-
                 _context.SaveChanges();
-            }
-            catch (DbEntityValidationException dbEx)
-            {
-                var msg = string.Empty;
-
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                        msg += string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage) + Environment.NewLine;
-
-                var fail = new Exception(msg, dbEx);
-                //Debug.WriteLine(fail.Message, fail);
-                throw fail;
-            }
+            });
+            TryCatchDatabaseAction(insertEntityAction);
         }
 
-        protected virtual TEntity HandleCreateableAndUpdateableEntity<TEntity>(TEntity entity) where TEntity:BaseEntity
+        protected virtual TEntity HandleCreateableAndUpdateableEntity<TEntity>(TEntity entity)
+            where TEntity : BaseEntity
         {
             var createableEntity = entity as ICreateableEntity;
             if (createableEntity.NotNull() && createableEntity.CreatedOnUtc == DateTime.MinValue)
@@ -88,16 +75,15 @@ namespace Saturn72.Core.Data
         }
 
         /// <summary>
-        /// Insert entities
+        ///     Insert entities
         /// </summary>
         /// <param name="entities">Entities</param>
         public virtual void Insert(IEnumerable<TEntity> entities)
         {
-            try
-            {
-                if (entities == null)
-                    throw new ArgumentNullException("entities");
+            Guard.NotEmpty(entities);
 
+            var insertMultiEntities = new Action(() =>
+            {
                 foreach (var entity in entities)
                 {
                     Entities.Add(entity);
@@ -105,93 +91,64 @@ namespace Saturn72.Core.Data
                 }
 
                 _context.SaveChanges();
-            }
-            catch (DbEntityValidationException dbEx)
-            {
-                var msg = string.Empty;
-
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                        msg += string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage) + Environment.NewLine;
-
-                var fail = new Exception(msg, dbEx);
-                //Debug.WriteLine(fail.Message, fail);
-                throw fail;
-            }
+            });
+            TryCatchDatabaseAction(insertMultiEntities);
         }
 
         /// <summary>
-        /// Update entity
+        ///     Update entity
         /// </summary>
         /// <param name="entity">Entity</param>
         public virtual void Update(TEntity entity)
         {
-            try
+            Guard.NotNull(entity);
+            var deleteAction = new Action(() =>
             {
-                if (entity == null)
-                    throw new ArgumentNullException("entity");
-
                 Entities.Add(HandleCreateableAndUpdateableEntity(entity));
                 _context.SaveChanges();
-            }
-            catch (DbEntityValidationException dbEx)
-            {
-                var msg = string.Empty;
+            });
 
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                        msg += Environment.NewLine + string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
-
-                var fail = new Exception(msg, dbEx);
-                //Debug.WriteLine(fail.Message, fail);
-                throw fail;
-            }
+            TryCatchDatabaseAction(deleteAction);
         }
 
         /// <summary>
-        /// Delete entity
+        ///     Delete entity
         /// </summary>
         /// <param name="entity">Entity</param>
         public virtual void Delete(TEntity entity)
         {
-            try
+            Guard.NotNull(entity);
+            var deleteEntityAction = new Action(() =>
             {
-                if (entity == null)
-                    throw new ArgumentNullException("entity");
-
                 Entities.Remove(entity);
-
                 _context.SaveChanges();
-            }
-            catch (DbEntityValidationException dbEx)
-            {
-                var msg = string.Empty;
+            });
 
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                        msg += Environment.NewLine + string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
-
-                var fail = new Exception(msg, dbEx);
-                //Debug.WriteLine(fail.Message, fail);
-                throw fail;
-            }
+            TryCatchDatabaseAction(deleteEntityAction);
         }
 
         /// <summary>
-        /// Delete entities
+        ///     Delete entities
         /// </summary>
         /// <param name="entities">Entities</param>
         public virtual void Delete(IEnumerable<TEntity> entities)
         {
-            try
+            Guard.NotEmpty(entities);
+            var deleteMultiAction = new Action(() =>
             {
-                if (entities == null)
-                    throw new ArgumentNullException("entities");
-
                 foreach (var entity in entities)
                     Entities.Remove(entity);
-
                 _context.SaveChanges();
+            });
+
+            TryCatchDatabaseAction(deleteMultiAction);
+        }
+
+        private static void TryCatchDatabaseAction(Action databaseAction)
+        {
+            try
+            {
+                databaseAction();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -199,7 +156,9 @@ namespace Saturn72.Core.Data
 
                 foreach (var validationErrors in dbEx.EntityValidationErrors)
                     foreach (var validationError in validationErrors.ValidationErrors)
-                        msg += Environment.NewLine + string.Format("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+                        msg += Environment.NewLine +
+                               string.Format("Property: {0} Error: {1}", validationError.PropertyName,
+                                   validationError.ErrorMessage);
 
                 var fail = new Exception(msg, dbEx);
                 //Debug.WriteLine(fail.Message, fail);
@@ -212,29 +171,24 @@ namespace Saturn72.Core.Data
         #region Properties
 
         /// <summary>
-        /// Gets a table
+        ///     Gets a table
         /// </summary>
         public virtual IQueryable<TEntity> Table
         {
-            get
-            {
-                return Entities;
-            }
+            get { return Entities; }
         }
 
         /// <summary>
-        /// Gets a table with "no tracking" enabled (EF feature) Use it only when you load record(s) only for read-only operations
+        ///     Gets a table with "no tracking" enabled (EF feature) Use it only when you load record(s) only for read-only
+        ///     operations
         /// </summary>
         public virtual IQueryable<TEntity> TableNoTracking
         {
-            get
-            {
-                return Entities.AsNoTracking();
-            }
+            get { return Entities.AsNoTracking(); }
         }
 
         /// <summary>
-        /// Entities
+        ///     Entities
         /// </summary>
         protected virtual IDbSet<TEntity> Entities
         {
