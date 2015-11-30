@@ -1,5 +1,5 @@
 ﻿Author: Saturn72 Technologies team
 FriendlyName: EntityFramework Code First Connector
-FileName: Automation.Plugins.EntityFramework.dll
+FileName: Saturn72.Plugins.EntityFramework.dll
 SupportedVersions: 1.00
-SystemName: Automation.Plugins.EntityFramework
+SystemName: Saturn72.Plugins.EntityFramework
