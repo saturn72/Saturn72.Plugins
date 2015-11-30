@@ -80,10 +80,6 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Saturn72.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Saturn72.Web\packages\Saturn72.Core.1.0.0\lib\net452\Saturn72.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Saturn72.Extensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Saturn72.Web\packages\Saturn72.Extensions.1.0.0\lib\net452\Saturn72.Extensions.dll</HintPath>
       <Private>False</Private>
@@ -101,7 +97,9 @@
     <Compile Include="EfRepository.cs" />
     <Compile Include="Initializers\CreateDatabaseAndTableIfNotExists.cs" />
     <Compile Include="Initializers\CreateTablesIfNotExist.cs" />
+    <Compile Include="Mapping\Configuration\SettingsMap.cs" />
     <Compile Include="Mapping\EfEntityTypeConfiguration.cs" />
+    <Compile Include="Mapping\Logging\LogRecordMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Saturn72ObjectContext.cs" />
     <Compile Include="SqlServerDataProvider.cs" />
@@ -111,10 +109,17 @@
     <Content Include="description.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Settings.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Saturn72.Core\src\Saturn72.Core\Saturn72.Core.csproj">
+      <Project>{C44EB924-2BA3-46ED-90BD-3D6FD25EAFD4}</Project>
+      <Name>Saturn72.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
+using Saturn72.Core.Domain.Logging;
+using Saturn72.Extensions;
 
 namespace Saturn72.Core.Data
 {
@@ -54,6 +56,7 @@ namespace Saturn72.Core.Data
                     throw new ArgumentNullException("entity");
 
                 Entities.Add(entity);
+                Entities.Add(HandleCreateableAndUpdateableEntity(entity));
 
                 _context.SaveChanges();
             }
@@ -71,6 +74,19 @@ namespace Saturn72.Core.Data
             }
         }
 
+        protected virtual TEntity HandleCreateableAndUpdateableEntity<TEntity>(TEntity entity) where TEntity:BaseEntity
+        {
+            var createableEntity = entity as ICreateableEntity;
+            if (createableEntity.NotNull() && createableEntity.CreatedOnUtc == DateTime.MinValue)
+                createableEntity.CreatedOnUtc = DateTime.UtcNow;
+
+            var updateableEntity = entity as IUpdateableEntity;
+            if (updateableEntity.NotNull())
+                updateableEntity.UpdatedOnUtc = DateTime.UtcNow;
+
+            return entity;
+        }
+
         /// <summary>
         /// Insert entities
         /// </summary>
@@ -83,7 +99,10 @@ namespace Saturn72.Core.Data
                     throw new ArgumentNullException("entities");
 
                 foreach (var entity in entities)
+                {
                     Entities.Add(entity);
+                    Entities.Add(HandleCreateableAndUpdateableEntity(entity));
+                }
 
                 _context.SaveChanges();
             }
@@ -112,6 +131,7 @@ namespace Saturn72.Core.Data
                 if (entity == null)
                     throw new ArgumentNullException("entity");
 
+                Entities.Add(HandleCreateableAndUpdateableEntity(entity));
                 _context.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)

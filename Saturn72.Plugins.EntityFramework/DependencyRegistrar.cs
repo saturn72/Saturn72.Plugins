@@ -21,7 +21,7 @@ namespace Saturn72.Core.Data
             var dataProviderManager = new EfDataProviderManager();
             var dataSettings = dataProviderManager.DataSettings;
 
-            Guard.MustFollow(() => dataSettings != null && dataSettings.IsValid(),
+            Guard.MustFollow(() => dataSettings.NotNull() && dataSettings.IsValid(),
                 () => { throw new Saturn72Exception("Failed to read DataSettings."); });
 
             var dataProvider = dataProviderManager.DataProvider;
