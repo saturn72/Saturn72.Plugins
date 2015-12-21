@@ -1,2 +1,3 @@
-﻿DataProvider: <your_data_provider_name_goes_here>
+﻿#Place this file in Main server App_Data folder
+DataProvider: <your_data_provider_name_goes_here>
 DataConnectionString: Data Source=<your_connection_String_goes_here>

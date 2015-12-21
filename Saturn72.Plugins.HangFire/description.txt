@@ -1,0 +1,5 @@
+﻿Author: Saturn72 Technologies team
+FriendlyName: HangFire task management plugin
+FileName: Saturn72.Plugins.HangFire.dll
+SupportedVersions: 1.00
+SystemName: Saturn72.Plugins.HangFire
