@@ -60,8 +60,7 @@ namespace Saturn72.Core.Data
             TryCatchDatabaseAction(insertEntityAction);
         }
 
-        protected virtual TEntity HandleCreateableAndUpdateableEntity<TEntity>(TEntity entity)
-            where TEntity : BaseEntity
+        protected virtual TEntity HandleCreateableAndUpdateableEntity(TEntity entity)
         {
             var createableEntity = entity as ICreateableEntity;
             if (createableEntity.NotNull() && createableEntity.CreatedOnUtc == DateTime.MinValue)
@@ -182,10 +181,7 @@ namespace Saturn72.Core.Data
         ///     Gets a table with "no tracking" enabled (EF feature) Use it only when you load record(s) only for read-only
         ///     operations
         /// </summary>
-        public virtual IQueryable<TEntity> TableNoTracking
-        {
-            get { return Entities.AsNoTracking(); }
-        }
+        public virtual IQueryable<TEntity> TableNoTracking => Entities.AsNoTracking();
 
         /// <summary>
         ///     Entities

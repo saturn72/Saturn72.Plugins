@@ -7,10 +7,7 @@ namespace Saturn72.Core.Data
 {
     public class DependencyRegistrar : IDependencyRegistrar
     {
-        public int Order
-        {
-            get { return 100; }
-        }
+        public int Order => 100;
 
         public void Register(ContainerBuilder builder, ITypeFinder typeFinder)
         {
