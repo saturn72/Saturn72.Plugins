@@ -17,6 +17,7 @@ namespace Saturn72.Plugins.HangFire
 
             GlobalConfiguration.Configuration.UseSqlServerStorage(connectionString);
             appBuilder.UseHangfireDashboard();
+            appBuilder.UseHangfireServer();
         }
 
         public int Order => 100;

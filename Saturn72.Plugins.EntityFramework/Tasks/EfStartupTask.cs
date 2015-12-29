@@ -1,6 +1,6 @@
 ﻿using Saturn72.Core.Configuration;
 using Saturn72.Core.Infrastructure;
-using Saturn72.Core.Infrastructure.Tasks;
+using Saturn72.Core.Tasks;
 using Saturn72.Extensions;
 
 namespace Saturn72.Core.Data.Tasks

@@ -101,7 +101,6 @@
     <Compile Include="Mapping\EfEntityTypeConfiguration.cs" />
     <Compile Include="Mapping\Localization\LocaleStringResourceMap.cs" />
     <Compile Include="Mapping\Logging\LogRecordMap.cs" />
-    <Compile Include="Mapping\Tasks\ScheduleTaskMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Saturn72ObjectContext.cs" />
     <Compile Include="SqlServerDataProvider.cs" />
