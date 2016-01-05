@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Saturn72.Plugins.HangFire
+namespace Saturn72.Modules.HangFire
 {
     internal class BackgroundTaskExecutor
     {

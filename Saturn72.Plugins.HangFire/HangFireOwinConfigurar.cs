@@ -5,7 +5,7 @@ using Saturn72.Core.Infrastructure;
 using Saturn72.Extensions;
 using Saturn72.Web.Framework.Owin;
 
-namespace Saturn72.Plugins.HangFire
+namespace Saturn72.Modules.HangFire
 {
     public class HangFireOwinConfigurar : IOwinConfigurar
     {

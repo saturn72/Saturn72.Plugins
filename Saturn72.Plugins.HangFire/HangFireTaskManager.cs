@@ -3,7 +3,7 @@ using Hangfire;
 using Saturn72.Core.Services.Tasks;
 using Saturn72.Extensions;
 
-namespace Saturn72.Plugins.HangFire
+namespace Saturn72.Modules.HangFire
 {
     public class HangFireTaskManager : ITaskManager
     {

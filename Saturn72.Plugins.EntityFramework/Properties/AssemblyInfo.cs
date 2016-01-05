@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Saturn72.Plugins.EntityFramework")]
+[assembly: AssemblyTitle("Saturn72.Modules.EntityFramework")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Saturn Technologies team")]
-[assembly: AssemblyProduct("Saturn72.Plugins.EntityFramework")]
+[assembly: AssemblyProduct("Saturn72.Modules.EntityFramework")]
 [assembly: AssemblyCopyright("Copyright © Saturn Technologies2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

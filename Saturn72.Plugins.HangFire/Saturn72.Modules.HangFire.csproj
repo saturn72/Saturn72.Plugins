@@ -7,8 +7,8 @@
     <ProjectGuid>{9BE55B6D-55DE-4D8C-9014-F718CC44619F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Saturn72.Plugins.HangFire</RootNamespace>
-    <AssemblyName>Saturn72.Plugins.HangFire</AssemblyName>
+    <RootNamespace>Saturn72.Modules.HangFire</RootNamespace>
+    <AssemblyName>Saturn72.Modules.HangFire</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Saturn72.Web\Saturn72.Web.UI\Plugins\Saturn72.Plugins.HangFire\</OutputPath>
+    <OutputPath>..\..\Saturn72.Web\Saturn72.Web.UI\Modules\Saturn72.Modules.HangFire\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Saturn72.Web\Saturn72.Web.UI\Plugins\Saturn72.Plugins.HangFire\</OutputPath>
+    <OutputPath>..\..\Saturn72.Web\Saturn72.Web.UI\Modules\Saturn72.Modules.HangFire\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

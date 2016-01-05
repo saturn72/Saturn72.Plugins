@@ -3,7 +3,7 @@ using Saturn72.Core.Infrastructure;
 using Saturn72.Core.Infrastructure.DependencyManagement;
 using Saturn72.Core.Services.Tasks;
 
-namespace Saturn72.Plugins.HangFire.Infrastructure
+namespace Saturn72.Modules.HangFire.Infrastructure
 {
     public class DependencyRegistrar : IDependencyRegistrar
     {
